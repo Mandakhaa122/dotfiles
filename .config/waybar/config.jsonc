@@ -1,0 +1,72 @@
+{
+    "layer": "top",
+    "position": "left",
+    "width": 40,
+    "margin-left": 0,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "spacing": 0,
+
+    "modules-left": [
+        "clock"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "power-profiles-daemon",
+        "bluetooth",
+        "network",
+        "battery"
+    ],
+
+    "clock": {
+        "format": "<b>{:%H\n%M}</b>\n—",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "hyprland/workspaces": {
+        "format": "",
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "🎧",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pwvucontrol"
+    },
+
+    "power-profiles-daemon": {
+        "format": " ",
+        "tooltip-format": "Profile: {profile}",
+        "on-click": "powerprofilesctl set $(powerprofilesctl get | grep -q 'balanced' && echo 'performance' || (powerprofilesctl get | grep -q 'performance' && echo 'power-saver' || echo 'balanced'))"
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "on-click": "blueman-manager"
+    },
+
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "battery": {
+        "format": "{icon}",
+        "format-charging": "󰂄",
+        "format-icons": ["󰂎", "󰁺", "󰁼", "󰁽", "󰁿", "󰂁", "󰁹"]
+    }
+}
