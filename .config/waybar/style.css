@@ -1,108 +1,190 @@
 * {
-    border: none;
-    border-radius: 0px;
-    outline: none;
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 13px;
-    min-height: 0px;
-    padding: 0px;
-    margin: 0px;
+  border: none;
+  border-radius: 10;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 16px;
+  min-height: 20px;
 }
 
 window#waybar {
-    background-color: rgba(15, 17, 23, 0.95);
-    border: none;
-    color: #8c93a8;
+  background: transparent;
 }
 
-#clock {
-    font-family: "Space Grotesk";
-    padding-top: 12px;
-    padding-bottom: 4px;
-    color: #8fa1e8; /* Change this hex code to your preferred shade of blue */
-    font-weight: 800; /* Extra bold */
-    font-size: 20px;
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#window {
+  margin-top: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: transparent;
+  background: transparent;
 }
 
 #workspaces {
-    padding: 4px 0px;
-    border: none;
-    min-width: 0;
-    transition: all 0.3s ease-in-out;
+  margin-top: 6px;
+  margin-left: 12px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  background: #282828;
+  /* default: background: #161320; */
+  transition: none;
 }
 
 #workspaces button {
-    padding: 0px;
-    margin: 5px 18px;
-    min-width: 6px;
-    min-height: 12px;
-    border: none;
-    border-radius: 10px;
-    background-color: #232736;
-    transition: all 0.25s ease;
-}
-
-#workspaces button label {
-    font-size: 0px;
-    opacity: 0;
-}
-
-#workspaces button:hover {
-    background-color: #3b4259;
-    min-height: 18px;
-    border: none;
+  transition: none;
+  color: #fbf1c7;
+  /* default: color: #b5e8e0; */
+  background: transparent;
+  border-radius: 2px;
 }
 
 #workspaces button.active {
-    min-height: 50px;
-    background-color: #8fa1e8;
-    border: none;
-    box-shadow: 0px 0px 8px rgba(143, 161, 232, 0.4);
+  color: #fe8019;
 }
 
-/* --- MODULES --- */
-#pulseaudio,
-#bluetooth,
-#network,
-#battery {
-    padding: 6px 0px;
-    margin: 2px 0px;
-    border: none;
-    color: #8c93a8;
-}
-
-#bluetooth {
-    color: #8fa1e8;
+#workspaces button:hover {
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: #d65d0e;
+  border-color: #d65d0e;
+  /* border-color: #e8a2af; */
+  /* color: #e8a2af; */
 }
 
 #network {
-    color: #7a6e93;
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #fb4934;
+  /*default: background: #bd93f9;*/
+}
+
+#wireplumber {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #1a1826;
+  background: #fae3b0;
 }
 
 #battery {
-    color: #798a68;
-    padding-bottom: 12px;
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #b5e8e0;
 }
 
-/* --- POWER SLIDER PILL --- */
-#power-profiles-daemon {
-    margin: 6px 18px;
-    padding: 0px;
-    min-width: 6px;
-    min-height: 32px;
-    border: none;
-    border-radius: 10px;
-    background-color: #3b4259;
+#battery.critical:not(.charging) {
+  background-color: #b5e8e0;
+  color: #161320;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#power-profiles-daemon label {
-    font-size: 0px;
+@keyframes blink {
+  to {
+    background-color: #bf616a;
+    color: #b5e8e0;
+  }
 }
 
-#power-profiles-daemon.performance {
-    background-color: #e06c75;
+#backlight {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #f8bd96;
 }
 
-#power-profiles-daemon.power-saver {
-    background-color: #98c379;
+#clock {
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #8ec07c;
+  /*default: background: #abe9b3; */
+}
+
+#bluetooth {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #fabd2f;
+  /*default: background: #ddb6f2; */
+}
+
+#cpu {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #b8bb26;
+  /*default: background: #96cdfb; */
+}
+
+#custom-screenoff {
+  font-size: 24px;
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 5px;
+  border-radius: 10px;
+  transition: none;
+  color: #fe8019;
+  /*default: color: #89dceb; */
+  background: #161320;
+}
+
+#custom-media{
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #f2cdcd;
 }

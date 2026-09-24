@@ -1,72 +1,95 @@
 {
-    "layer": "top",
-    "position": "left",
-    "width": 40,
-    "margin-left": 0,
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "spacing": 0,
+	"layer": "top",
+	"modules-left": ["custom/screenoff", "custom/media"],
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["network", "cpu", "bluetooth", "battery", "clock"],
 
-    "modules-left": [
-        "clock"
-    ],
-    "modules-center": [
-        "hyprland/workspaces"
-    ],
-    "modules-right": [
-        "pulseaudio",
-        "power-profiles-daemon",
-        "bluetooth",
-        "network",
-        "battery"
-    ],
+  "network": {
+    "tooltip": false,
+    "format-wifi": "  {essid}",
+    "format-ethernet": "",
+    "on-click":"kitty -- nmtui"
+	},
 
-    "clock": {
-        "format": "<b>{:%H\n%M}</b>\n—",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  "battery": {
+      "states": {
+          "full": 100,
+          "good": 95,
+          "decent": 50,
+          "warning": 30,
+          "critical": 20
+      },
+      "format": "{icon}  {capacity}%",
+      "format-time": "{H} h {M} min",
+      "format-alt": "{icon} {time}",
+      "format-icons": ["", "", "", "", ""]
+  },
+
+
+  "clock": {
+      "format": "{:%H:%M}",
+      "format-alt": "{:%m-%d-%Y}"
+  },
+
+
+  "cpu": {
+      "interval": 15,
+      "format": "  {}%",
+      "max-length": 10,
+      "on-click":"kitty -- btop -p 3"
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "blueman-manager"
+},
+ 
+  "custom/media": {
+      "interval": 30,
+      "format": "{icon} {}",
+      "return-type": "json",
+      "max-length": 20,
+      "format-icons": {
+          "spotify": " ",
+          "default": " "
+      },
+      "escape": true,
+      "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+      "on-click": "playerctl play-pause"
+  },
+
+
+  "custom/screenoff":{
+      "format": " ",
+      "on-click": "systemctl reboot",
+      "on-click-right": "killall rofi"
+  },
+
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "壹",
+      "2": "貳",
+      "3": "參",
+      "4": "肆",
+      "5": "伍",
+      "6": "陸",
+      "7": "柒",
+      "8": "捌",
+      "9": "玖",
+      "10": "拾"
     },
-
-    "hyprland/workspaces": {
-        "format": "",
-        "on-click": "activate",
-        "persistent-workspaces": {
-            "*": 5
-        }
+    "persistent-workspaces": {
+      "*": 5
     },
-
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "headphone": "🎧",
-            "default": ["󰕿", "󰖀", "󰕾"]
-        },
-        "on-click": "pwvucontrol"
-    },
-
-    "power-profiles-daemon": {
-        "format": " ",
-        "tooltip-format": "Profile: {profile}",
-        "on-click": "powerprofilesctl set $(powerprofilesctl get | grep -q 'balanced' && echo 'performance' || (powerprofilesctl get | grep -q 'performance' && echo 'power-saver' || echo 'balanced'))"
-    },
-
-    "bluetooth": {
-        "format": "",
-        "format-disabled": "󰂲",
-        "format-connected": "󰂱",
-        "on-click": "blueman-manager"
-    },
-
-    "network": {
-        "format-wifi": "󰤨",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰤭",
-        "on-click": "kitty -e nmtui"
-    },
-
-    "battery": {
-        "format": "{icon}",
-        "format-charging": "󰂄",
-        "format-icons": ["󰂎", "󰁺", "󰁼", "󰁽", "󰁿", "󰂁", "󰁹"]
-    }
+    "active": "",
+    "sort-by-number": true
+  }
 }
